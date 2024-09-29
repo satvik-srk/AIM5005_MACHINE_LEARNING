@@ -1,7 +1,7 @@
 import numpy as np
 from typing import List, Tuple
 
-def error(intercept:float, beta:float, x_i: float, y_i:float)->float:
+def error(intercept:float, beta:float, x_i: float, y_i:float)->float: 
     """
     Find the difference between the predicted value and the actual value, where actual is is y_i
     """
