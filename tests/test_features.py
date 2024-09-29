@@ -62,6 +62,20 @@ class TestFeatures(TestCase):
         assert (result == expected).all(), "Scaler transform does not return expected values. Expect {}. Got: {}".format(expected.reshape(1,-1), result.reshape(1,-1))
 
     # TODO: Add a test of your own below this line
+
+     # Custom Test: StandardScaler with negative values
+    def test_standard_scaler_with_negative_values(self):
+        """
+        Custom Test: Ensure StandardScaler handles data with negative values correctly.
+        """
+        data = [[-5, -10], [-2, -5], [0, 0], [5, 10]]
+        expected = np.array([[-1.22474, -1.22474], [-0.489898, -0.489898], [0.0, 0.0], [1.22474, 1.22474]])
+        scaler = StandardScaler()
+        scaler.fit(data)
+        result = scaler.transform(data)
+        assert np.allclose(result, expected, atol=1e-5), f"Scaler transform does not return expected values. Expected {expected}, got {result}"
+        print("test_standard_scaler_with_negative_values passed")
+
     
 if __name__ == '__main__':
     unittest.main()
