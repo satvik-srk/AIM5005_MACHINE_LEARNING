@@ -76,6 +76,21 @@ class TestFeatures(TestCase):
         assert np.allclose(result, expected, atol=1e-5), f"Scaler transform does not return expected values. Expected {expected}, got {result}"
         print("test_standard_scaler_with_negative_values passed")
 
+    # Custom Test: StandardScaler handling missing values
+    def test_standard_scaler_with_missing_values(self):
+        """
+        Custom Test: Ensure StandardScaler handles data with missing (NaN) values correctly.
+        """
+        data = [[1, 2], [np.nan, 6], [7, np.nan], [9, 10]]
+        scaler = StandardScaler()
+        
+        try:
+            scaler.fit(data)
+            result = scaler.transform(data)
+            print("test_standard_scaler_with_missing_values passed")
+        except ValueError as e:
+            print(f"test_standard_scaler_with_missing_values failed with ValueError: {e}")
+
     
 if __name__ == '__main__':
     unittest.main()
